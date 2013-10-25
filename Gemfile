@@ -34,7 +34,8 @@ end
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-group :development do
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
   gem 'pry'
   gem 'pry-debugger'
   gem 'pry-stack_explorer'
