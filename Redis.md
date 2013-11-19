@@ -12,17 +12,20 @@
    * Counting unique visits to a page. Add client IPs that have viewed page.
    * Leader boards. Users sorted by score. 
    * Live update of items, (articles, orders, etc.) on your home page.
+
 ## Installation
    [Installation on OSX](http://paralyzedegg.blogspot.com/2013/05/homebrew-redis-on-mountain-lion.html)
 
 ## Manage Redis server.
-   Install the [lunchy gem](https://github.com/mperham/lunchy) to manage OSX services. Wraps launchctl.
+### Lunchy gem
+   <p>Install the [lunchy gem](https://github.com/mperham/lunchy) to manage OSX services. Wraps launchctl.</p>
    * Will show the process id, pid, of redis service if it's running.
    <code> lunchy status redis</code>
    * Stop Redis server/service.
    <code> lunchy stop redis</code>
    * Start Redis server/service.
    <code> lunchy start redis</code>
+
 ## Overview
    * Operates Like a big hash.
    * Keys are strings with identify pieces of data (values)
@@ -37,30 +40,24 @@
    * Can run in append mode. When a key changes an append only file is updated on the disk.
 
 ## Ruby Redis Gem
-   [Github Gem](https://github.com/redis/redis-rb)
-   [Gem Documentation](http://redis-rb.keyvalue.org/v2.2.0/)
-   [Documentation](http://redis-rb.keyvalue.org/v2.2.0/)
-   [Methods](http://redis-rb.keyvalue.org/v2.2.0/Redis.html)
+   * [Github Gem](https://github.com/redis/redis-rb)
+   * [Gem Documentation](http://redis-rb.keyvalue.org/v2.2.0/)
+   * [Documentation](http://redis-rb.keyvalue.org/v2.2.0/)
+   * [Methods](http://redis-rb.keyvalue.org/v2.2.0/Redis.html)
 
 ## Data Types 
-   [Data Types](http://redis.io/topics/data-types)
-
-### Strings
-    [Operations](http://redis.io/commands/#string)   
-
-### Lists
-    [Operations](http://redis.io/commands/#list)        
-
-### Sets
-    [Operations](http://redis.io/commands/#set)   
+  * [Data Types](http://redis.io/topics/data-types)
+  * [String Operations](http://redis.io/commands/#string)   
+  * [List Operations](http://redis.io/commands/#list)        
+  * [Set Operations](http://redis.io/commands/#set)   
 
 
 ### Redis Client
-    [Redis Client](http://redis.io/topics/data-types-intro)
-    <code>redis-cli --help</code>
+  * [Redis Client](http://redis.io/topics/data-types-intro)
+    
+  <code>redis-cli --help</code>
 
 
 ### References
-    [Little Redis Book](http://openmymind.net/2012/1/23/The-Little-Redis-Book/)
-
-    [Redis Presentation](http://no.gd/redis-presentation.pdf)
+  * [Little Redis Book](http://openmymind.net/2012/1/23/The-Little-Redis-Book/)
+  * [Redis Presentation](http://no.gd/redis-presentation.pdf)
