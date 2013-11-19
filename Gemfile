@@ -31,8 +31,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# C api for redis, faster
+gem 'hiredis'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'redis-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

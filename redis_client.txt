@@ -1,0 +1,11 @@
+get key1
+get counter
+
+smembers 'foo-tags'
+
+# yes, returns 1 
+sismember 'foo-tags' 'two'
+
+# nope, returns 1 
+sismember 'foo-tags' 'twoxx'
+

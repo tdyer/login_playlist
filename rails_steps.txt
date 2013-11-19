@@ -1,0 +1,53 @@
+- Add this to the config/application.rb
+  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', {  expires_in: 90.minutes }
+
+- Open the rails console
+  rails c
+
+- Write a cache entry and fetch it.
+  Rails.cache.write('today', Date.today)
+  Rails.cache.fetch('today')
+
+- Fetch a non-existent cache entry, then set it.
+  Rails.cache.fetch('todayx')
+  Rails.cache.fetch('todayx'){ Date.today }
+  
+  fetch will attempt to get the entry by key, if not found it will invoke the block and set the value for the key.
+
+- Get a User's cache key
+  User.first.cache_key
+
+  The cache key is from the class of the instance, id and updated_at time.
+
+- Update the user and check that the cache key has changed
+  User.first.touch
+  User.first.cache_key  
+
+   Notice that the key has changed because we've changed the updated_at attribute
+
+- Lets look for and fetch a key for a user. The User class has no 'first_name' attribute.
+  Rails.cache.fetch([user,'first_name']){ "Tom" }
+
+  This send the following commands to Redis, you can see this in the redis-cli when invoking the monitor command
+  "get" "users/1-20131119161026959303000/first_name"</p>
+  setex" "users/1-20131119161026959303000/first_name" "5400" "\x04\o: ActiveSupport::Cache::Entry\:\x0b@valueI\"\Tom\x06:\x06ET:\x10@created_atf\x161384877571.762469:\x10@expires_inf\5.4e3"
+  
+  Notice the namespace, TimeToLive (TTL) is 5400 seconds
+
+- Lets cache the count of a user's playlists
+   in user.rb:
+   def playlists_count
+    Rails.cache.fetch([self, 'playlists_count']){ playlists.size}
+   end
+
+   in playlist.rb:
+   belongs_to :user, touch: true
+
+   in the console:
+   reload!
+   user = User.first
+   user.playlists_count  
+   user.playlists_count  
+   Notice that the first time it will do a SQL select to find the count.
+   Notice that after this it  will *NOT* do a SQL select to find the count. It's getting the value from Redis
+
