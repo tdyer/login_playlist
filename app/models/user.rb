@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
 
   has_many :playlists
 
+  def playlists_count
+    Rails.cache.fetch([self, 'playlists_count']){ playlists.size}
+  end
+  
   #def active_songs 
   #  self.songs.merge(SongCollection.active)
   #end    
