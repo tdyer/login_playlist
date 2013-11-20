@@ -21,8 +21,8 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
+    <%= label_tag "Select State" %><br>
+    <%= select_tag 'State', Playlist.states_for_select_tag %>
   </div>
   <div class="actions">
     <%= f.submit %>
