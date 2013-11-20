@@ -27,7 +27,9 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
+    @user = current_user || User.find(playlist_params[:user_id])
     @playlist = Playlist.new(playlist_params)
+    @user.playlists << @playlist
 
     respond_to do |format|
       if @playlist.save
@@ -65,13 +67,14 @@ class PlaylistsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_playlist
-      @playlist = Playlist.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def playlist_params
-      params.require(:playlist).permit(:user_id, :name, :state)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_playlist
+    @playlist = Playlist.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def playlist_params
+    params.require(:playlist).permit(:user_id,:user_email, :name, :state)
+  end
 end

@@ -31,6 +31,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'thin'
+
 # C api for redis, faster
 gem 'hiredis'
 
@@ -41,6 +43,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'pry'
   gem 'pry-debugger'
+  # gem 'pry-byebug'
+  # gem 'byebug'
   gem 'pry-stack_explorer'
   # Add model attributes 
   gem 'annotate'
