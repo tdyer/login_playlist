@@ -1,11 +1,9 @@
 module ApplicationHelper
   def show_playlist(playlist)
     "<tr>
+      <td>#{link_to playlist.name, playlist_path(playlist)}</td>
       <td>#{playlist.user.email}</td>
-      <td>#{playlist.name}</td>
       <td>#{playlist.state}</td>
-      <td>#{link_to 'Show', playlist}</td>
-      <td>#{link_to 'Edit', edit_playlist_path(playlist) }</td>
       <td>#{link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } }</td>
     </tr>".html_safe
   end
@@ -22,9 +20,9 @@ end
     "<table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>State</th>
+      <th>Playlist Name</th>
+      <th>Playlist Owner</th>
+      <th>Playlist State</th>
     </tr>
   </thead>
 

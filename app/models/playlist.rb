@@ -4,7 +4,7 @@ class Playlist < ActiveRecord::Base
   belongs_to :user, touch: true
   has_and_belongs_to_many :songs
 
-  validates :states, inclusion: { in: STATES }
+  validates :state, inclusion: { in: STATES }
 
   def self.states_for_select_tag
     s = ""

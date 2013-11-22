@@ -10,12 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+<% unless current_user %>
   <div class="field">
     <%= label_tag "Select User" %><br>
     <%= collection_select(:playlist, :user_id, User.all, :id, :email,
     include_blank: true) %>
   </div>
+<% end %>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>

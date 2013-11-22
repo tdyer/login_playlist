@@ -1,23 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<% unless current_user %>
+  <h2>Playlist Owner:</h2>
+  <%= @playlist.user.email %>
+<% end %>
 <p>
-  <strong>User:</strong>
-  <%= @playlist.user %>
-</p>
-
-<p>
-  <strong>Name:</strong>
+  <h2>PlayList Name:</h2>
   <%= @playlist.name %>
 </p>
-<p>
-   <% @playlist.songs.each do |song| %>
-    <%= song.name %>	
-   <% end %>
-</p>
-<p>
-  <strong>State:</strong>
-  <%= @playlist.state %>
-</p>
 
+<h2> Songs </h2>
+<ul id='songs'>
+   <% @playlist.songs.each do |song| %>
+    <li>
+      <%= link_to song.name, song_path(song) %>	
+    </li>
+   <% end %>
+</ul>
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>

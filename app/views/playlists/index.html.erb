@@ -1,17 +1,14 @@
-<h1>My playlists</h1>
-<% if current_user %>
 
+<% if current_user %>
+  <h1>My playlists</h1>
 	<% if @my_playlists && !@my_playlists.empty? %>
 		<%= show_playlists_table(@my_playlists) %>
 	<% else %>
 		<h2>You currently have no playlists</h2>
 	<% end %>
 <% else %>
-	<h2>you need to log in to see your playlists</h2>
+  <h1>All public playlists</h1>
+  <%= show_playlists_table(@playlists) %>
 <% end %>
-<br>
-
-<h1>All public playlists</h1>
-<%= show_playlists_table(@playlists) %>
 <br>
 <%= link_to 'New Playlist', new_playlist_path %>
